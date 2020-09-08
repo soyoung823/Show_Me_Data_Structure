@@ -72,6 +72,8 @@ print(o.pop().tree_node.key)
 
 def huffman_encoding(data):
     # 0. Build the prioritylist
+    if not bool(data):
+        return '', None
     d = {}
     for c in data:
         d[c] = d.get(c, 0) + 1
@@ -142,3 +144,24 @@ if __name__ == "__main__":
 
     print ("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
     print ("The content of the encoded data is: {}\n".format(decoded_data))
+
+def test_case(data):
+    if data is None or len(str(data)) == 0:
+        print('Empty data!')
+        return
+    
+    print("The size of the data is: {}\n".format(sys.getsizeof(data)))
+    print("The content of the data is: {}\n".format(data))
+
+    encoded_data, t = huffman_encoding(data)
+
+    print("The size of the encoded data is: {}\n".format(sys.getsizeof(int(encoded_data.replace(' ', ''), base=2))))
+    print("The content of the encoded data is: {}\n".format(encoded_data))
+
+    decoded_data = huffman_decoding(encoded_data, t)
+    print("The size of the decoded data is: {}\n".format(sys.getsizeof(decoded_data)))
+    print("The content of the encoded data is: {}\n".format(decoded_data))
+
+if __name__ == '__main__':
+    test_case(' aaaaaa ')
+    test_case('')

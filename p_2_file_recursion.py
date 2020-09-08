@@ -1,6 +1,7 @@
 '''
 Finding Files
-For this problem, the goal is to write code for finding all files under a directory (and all directories beneath it) that end with ".c"
+For this problem, the goal is to write code for finding all files under a directory 
+(and all directories beneath it) that end with ".c"
 
 Here is an example of a test directory listing, which can be downloaded here:
 
@@ -31,7 +32,8 @@ os.listdir(directory)
 
 os.path.join(...)
 
-Note: os.walk() is a handy Python method which can achieve this task very easily. However, for this problem you are not allowed to use os.walk().
+Note: os.walk() is a handy Python method which can achieve this task very easily. 
+However, for this problem you are not allowed to use os.walk().
 
 Here is some code for the function to get you started:
 '''
@@ -54,6 +56,12 @@ def find_files(suffix, path):
       a list of paths
   """
   # Recursion
+  if not bool(path):
+    return []
+
+  if not bool(suffix):
+    suffix = None
+
   result = []
   children = os.listdir(path)
   
@@ -84,3 +92,10 @@ def find_files(suffix, path):
 
 if __name__ == '__main__':
   print(find_files('.c', './testdir'))
+
+# Test cases
+print(find_files('_2.py', '.'))
+print(find_files('', ''))
+print(find_files('.c', None))
+print(find_files('.c', './testdir'))
+print(find_files('.h', './testdir'))

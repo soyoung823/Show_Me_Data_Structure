@@ -4,11 +4,20 @@ We have briefly discussed caching as part of a practice problem while studying h
 
 The lookup operation (i.e., get()) and put() / set() is supposed to be fast for a cache memory.
 
-While doing the get() operation, if the entry is found in the cache, it is known as a cache hit. If, however, the entry is not found, it is known as a cache miss.
+While doing the get() operation, if the entry is found in the cache, it is known as a cache hit. 
+If, however, the entry is not found, it is known as a cache miss.
 
-When designing a cache, we also place an upper bound on the size of the cache. If the cache is full and we want to add a new entry to the cache, we use some criteria to remove an element. After removing an element, we use the put() operation to insert the new element. The remove operation should also be fast.
+When designing a cache, we also place an upper bound on the size of the cache. 
+If the cache is full and we want to add a new entry to the cache, 
+we use some criteria to remove an element. 
+After removing an element, we use the put() operation to insert the new element. 
+The remove operation should also be fast.
 
-For our first problem, the goal will be to design a data structure known as a Least Recently Used (LRU) cache. An LRU cache is a type of cache in which we remove the least recently used entry when the cache memory reaches its limit. For the current problem, consider both get and set operations as an use operation.
+For our first problem, the goal will be to design a data structure known 
+as a Least Recently Used (LRU) cache. 
+An LRU cache is a type of cache in which we remove the least recently used entry 
+when the cache memory reaches its limit. 
+For the current problem, consider both get and set operations as an use operation.
 
 Your job is to use an appropriate data structure(s) to implement the cache.
 
@@ -93,3 +102,28 @@ print(our_cache.cache)
 
 print(our_cache.get(3))    # returns -1 because the cache reached its capacity and 
                     # 3 was the least recently used entry 
+
+# Test for cache capacity 0. Should return -1 
+cache = LRU_Cache(0)
+cache.set(1, 1)
+assert cache.get(1) == -1
+cache.set(2, 2)
+assert cache.get(2) == -1
+
+# Test for cache capacity 3
+cache = LRU_Cache(3)
+cache.set(1, 1)
+cache.set(2, 2)
+cache.set(3, 3)
+assert cache.get(3) == 3
+assert cache.get(2) == 2
+assert cache.get(1) == 1
+
+# Test for cache capacity 7
+cache = LRU_Cache(7)
+cache.set(1, 10)
+cache.set(2, 20)
+cache.set(5, 50)
+assert cache.get(5) == 50
+assert cache.get(2) == 20
+assert cache.get(1) == 10
