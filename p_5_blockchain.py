@@ -75,25 +75,72 @@ class BlockChain(object):
             block = block.next
         return out
 
-
-# Test case for Block
+# Test case for Blocks for BlockChain1
 b1 = Block(datetime.datetime.utcnow(), 'First block b1', 0)
 b2 = Block(datetime.datetime.utcnow(), 'Second block b2', b1)
 b3 = Block(datetime.datetime.utcnow(), 'Third block b3', b2)
-
-# Test case for BlockChain
-block_chain = BlockChain()
-block_chain.append('First block chain bc1')
-block_chain.append('Second block chain bc2')
-block_chain.append('Third block chain bc3')
-
+# Test case for BlockChain1
+block_chain1 = BlockChain()
+block_chain1.append('First block chain bc1')
+block_chain1.append('Second block chain bc2')
+block_chain1.append('Third block chain bc3')
 # Tests
 print('The b1 data: ', b1.data)
 print('The b1 hash value: ', b1.hash)
 print('The b1 timestamp: ', b1.timestamp)
 print('The previous block data of b2: ', b2.previous_hash.data)
-print('The block_chain tail data: ', block_chain.tail.data)
-print('The block_chain previous hash data: ', block_chain.tail.previous_hash)
+print('The block_chain tail data: ', block_chain1.tail.data)
+print('The block_chain previous hash data: ', block_chain1.tail.previous_hash)
+
+# Test case for Blocks for BlockChain2
+b1 = Block(datetime.datetime.utcnow(), 'b1 is first', 0)
+b2 = Block(datetime.datetime.utcnow(), 'b2 is second', b1)
+b3 = Block(datetime.datetime.utcnow(), 'b3 is third', b2)
+# Test case for BlockChain2
+block_chain2 = BlockChain()
+block_chain2.append('bc1 is the 1st block chain')
+block_chain2.append('bc2 is the 2nd block chain')
+block_chain2.append('bc3 is the 3rd block chain')
+# Tests
+print('The b1 data: ', b1.data)
+print('The b1 hash value: ', b1.hash)
+print('The b1 timestamp: ', b1.timestamp)
+print('The previous block data of b2: ', b2.previous_hash.data)
+print('The block_chain tail data: ', block_chain2.tail.data)
+print('The block_chain previous hash data: ', block_chain2.tail.previous_hash)
+
+# Test case for Blocks for BlockChain3
+b1 = Block(datetime.datetime.utcnow(), '1st block b1', 0)
+b2 = Block(datetime.datetime.utcnow(), '2nd block b2', b1)
+b3 = Block(datetime.datetime.utcnow(), '3rd block b3', b2)
+# Test case for BlockChain3
+block_chain3 = BlockChain()
+block_chain3.append('now is the 1st bc1')
+block_chain3.append('now is the 2nd bc2')
+block_chain3.append('now is the 3rd bc3')
+# Tests
+print('The b1 data: ', b1.data)
+print('The b1 hash value: ', b1.hash)
+print('The b1 timestamp: ', b1.timestamp)
+print('The previous block data of b2: ', b2.previous_hash.data)
+print('The block_chain tail data: ', block_chain3.tail.data)
+print('The block_chain previous hash data: ', block_chain3.tail.previous_hash)
+
+# Test case for the edge case that BlockChain length should be 0
+# Didn't build blockchain.
+# Test case for BlockChain3
+block_chain4 = BlockChain()
+block_chain4.append(None)
+block_chain4.append(None)
+block_chain4.append(None)
+# Tests
+if block_chain3 == None: 
+    print('The b1 data: ', b1.data)
+    print('The b1 hash value: ', b1.hash)
+    print('The b1 timestamp: ', b1.timestamp)
+    print('The previous block data of b2: ', b2.previous_hash.data)
+    print('The block_chain tail data: ', block_chain4.tail.data)
+    print('The block_chain previous hash data: ', block_chain4.tail.previous_hash)
 
 '''
 Above is an example of attributes you could find in a Block class.
@@ -101,4 +148,5 @@ Above is an example of attributes you could find in a Block class.
 Finally you need to link all of this together in a block chain, which you will be doing by implementing it in a linked list. 
 All of this will help you build up to a simple but full blockchain implementation!
 '''
+
 

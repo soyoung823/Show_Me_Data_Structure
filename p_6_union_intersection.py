@@ -22,7 +22,6 @@ class Node:
     def __repr__(self):
         return str(self.value)
 
-
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -35,9 +34,7 @@ class LinkedList:
             cur_head = cur_head.next
         return out_string
 
-
     def append(self, value):
-
         if self.head is None:
             self.head = Node(value)
             return
@@ -45,11 +42,9 @@ class LinkedList:
         node = self.head
         while node.next:
             node = node.next
-
         node.next = Node(value)
 
-    def prepend(self, value):
-        
+    def prepend(self, value):        
         n_node = Node(value)
         n_node.next = self.head
         self.head = n_node
@@ -60,7 +55,6 @@ class LinkedList:
         while node:
             size += 1
             node = node.next
-
         return size
 
 def union(llist_1, llist_2):
@@ -80,7 +74,6 @@ def union(llist_1, llist_2):
         res.prepend(n)
     return res
     
-
 def intersection(llist_1, llist_2):
     s1 = set()
     cur_node = llist_1.head
@@ -101,10 +94,7 @@ def intersection(llist_1, llist_2):
     return res
     
 
-
-
 # Test case 1
-
 linked_list_1 = LinkedList()
 linked_list_2 = LinkedList()
 
@@ -121,12 +111,43 @@ print (union(linked_list_1,linked_list_2))
 print (intersection(linked_list_1,linked_list_2))
 
 # Test case 2
-
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
 
 element_1 = [3,2,4,35,6,65,6,4,3,23]
 element_2 = [1,7,8,9,11,21,1]
+
+for i in element_1:
+    linked_list_3.append(i)
+
+for i in element_2:
+    linked_list_4.append(i)
+
+print (union(linked_list_3,linked_list_4))
+print (intersection(linked_list_3,linked_list_4))
+
+# Test case 3 for edge case
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_1 = []
+element_2 = [1,7,8,9,11,21,1]
+
+for i in element_1:
+    linked_list_3.append(i)
+
+for i in element_2:
+    linked_list_4.append(i)
+
+print (union(linked_list_3,linked_list_4))
+print (intersection(linked_list_3,linked_list_4))
+
+# Test case 4 for edge case
+linked_list_3 = LinkedList()
+linked_list_4 = LinkedList()
+
+element_1 = []
+element_2 = []
 
 for i in element_1:
     linked_list_3.append(i)
