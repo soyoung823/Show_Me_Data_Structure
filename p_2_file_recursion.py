@@ -106,6 +106,6 @@ print(find_files('.c', None))
 print(find_files('.c', './testdir'))
 print(find_files('.h', './testdir'))
 
-path = "./p_2_file_recursion.py"
+path = "./"
 suffix = ".py"
 print(find_files(suffix, path))
