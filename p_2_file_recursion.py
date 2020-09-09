@@ -56,22 +56,27 @@ def find_files(suffix, path):
       a list of paths
   """
   # Recursion
+  result = []
+
   if not bool(path):
     return []
 
   if not bool(suffix):
     suffix = None
 
-  result = []
-  children = os.listdir(path)
+  if os.path.isdir(path): # if the current path is a file
+    if path.endswith(suffix): # if the file has extension suffix='.c'
+      result.append(path)
+  else:
+    children = os.listdir(path)
   
-  for child in sorted(children):
-    full_path = os.path.join(path, child)
+    for child in children:
+      full_path = os.path.join(path, child)
 
-    if os.path.isdir(full_path):
-      result += find_files(suffix, full_path)
-    elif os.path.isfile(full_path) and full_path.endswith(suffix):
-      result.append(full_path)
+      if os.path.isdir(full_path):
+        result += find_files(suffix, full_path)
+      elif os.path.isfile(full_path) and full_path.endswith(suffix):
+        result.append(full_path)
 
   return result
   '''
@@ -92,6 +97,7 @@ def find_files(suffix, path):
 
 if __name__ == '__main__':
   print(find_files('.c', './testdir'))
+  
 
 # Test cases
 print(find_files('_2.py', '.'))
@@ -99,3 +105,7 @@ print(find_files('', ''))
 print(find_files('.c', None))
 print(find_files('.c', './testdir'))
 print(find_files('.h', './testdir'))
+
+path = "./p_2_file_recursion.py"
+suffix = ".py"
+print(find_files(suffix, path))
